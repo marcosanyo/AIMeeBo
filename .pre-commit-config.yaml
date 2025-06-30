@@ -1,0 +1,28 @@
+default_stages: [commit]
+
+repos:
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: "v1.96.1"
+    hooks:
+      - id: terraform_docs
+        name: terraform-docs
+        description: "Run terraform-docs"
+
+      - id: terraform_fmt
+        name: terraform-fmt
+        description: "Run 'terraform fmt' for format"
+        args: [recursive]
+
+      - id: terraform_tflint
+        name: terraform-lint
+        description: "Run tflint"
+
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint
+        name: Lint Dockerfiles
+        description: Runs hadolint to lint Dockerfiles
+        language: system
+        types: ["dockerfile"]
+        entry: hadolint

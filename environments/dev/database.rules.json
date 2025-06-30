@@ -1,0 +1,10 @@
+{
+    "rules": {
+        "rooms": {
+            "$roomId": {
+                ".read": "auth != null && root.child('rooms').child($roomId).child('participants').hasChild(auth.uid)",
+                ".write": false
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.loader {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin: auto; /* Center in flex container */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animation for highlighting updated content */
+@keyframes flash {
+  0% { background-color: rgba(229, 231, 235, 0.8); } /* Brighter, less colored flash (e.g., light gray) */
+  50% { background-color: rgba(229, 231, 235, 0.8); } /* Hold the flash longer */
+  100% { background-color: transparent; } /* Fade to original background */
+}
+
+.content-flash {
+  animation: flash 1.5s ease-out; /* Longer duration */
+}

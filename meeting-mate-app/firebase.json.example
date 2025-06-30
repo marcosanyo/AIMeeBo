@@ -1,0 +1,112 @@
+{
+    "hosting": [
+        {
+            "target": "production",
+            "public": "out",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/invoke",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/join_room",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/approve_join_request",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/create_room",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/add_message",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/room/**",
+                    "destination": "/room/index.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ]
+        },
+        {
+            "target": "demo",
+            "public": "out",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/invoke",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/join_room",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/approve_join_request",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/create_room",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/add_message",
+                    "run": {
+                        "serviceId": "your-backend-service-name",
+                        "region": "your-region"
+                    }
+                },
+                {
+                    "source": "/room/**",
+                    "destination": "/room/index.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ]
+        }
+    ]
+}

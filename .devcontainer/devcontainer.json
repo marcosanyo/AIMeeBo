@@ -1,0 +1,41 @@
+{
+    "name": "Terraform",
+    "build": {
+        "context": "..",
+        "dockerfile": "Dockerfile",
+        "args": {
+            "BASE_IMAGE": "mcr.microsoft.com/vscode/devcontainers/python",
+            "DEBIAN_VERSION": "bookworm",
+            "GCLOUD_SDK_VERSION": "502.0.0",
+            "PYTHON_VERSION": "3.12",
+            "TENV_VERSION": "latest",
+            "TFLINT_VERSION": "v0.55.1",
+            "TRIVY_VERSION": "latest"
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers-extra/features/pre-commit:2": {},
+        "ghcr.io/devcontainers-extra/features/terraform-docs:1": {},
+        "ghcr.io/dhoeric/features/hadolint:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "aquasecurityofficial.trivy-vulnerability-scanner",
+                "exiasr.hadolint",
+                "hashicorp.terraform",
+                "mosapride.zenkaku",
+                "ms-azuretools.vscode-docker",
+                "redhat.vscode-yaml",
+                "shardulm94.trailing-spaces"
+            ]
+        }
+    },
+    "containerEnv": {
+        "DISPLAY": "dummy",
+        "PYTHONUNBUFFERED": "True",
+        "TENV_AUTO_INSTALL": "True"
+    },
+    "postCreateCommand": "pre-commit install",
+    "remoteUser": "vscode"
+}
