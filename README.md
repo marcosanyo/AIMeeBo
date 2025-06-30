@@ -8,7 +8,6 @@
 
 新規ルーム作成時には、Firebase Realtime Database に保存されている `template` という名前のテンプレートルームを基に作成されます。バックエンドはPython (FastAPI) で構築され、中央のオーケストレーターLLMが専門エージェントLLM群（タスク管理、参加者管理、ノート生成、アジェンダ管理、概要図生成）を制御します。
 
----
 
 ## 🎯 目的
 
@@ -502,42 +501,7 @@ Terraform関連のファイル (`environments/` ディレクトリ) にデプロ
 - Chrome: 不可
 - Safari: 可
 
-
-## 課題
-- mermaidをフロントエンドで表示する際にエラー発生しやすい
-  - ```
-    Error rendering diagram: Parse error on line 30: ...TE -.-> NET_ACL; %% 許可されるべきだったがACLが阻害してい -----------------------^ Expecting 'SEMI', 'NEWLINE', 'EOF', 'AMP', 'START_LINK', 'LINK', 'LINK_ID', got 'UNICODE_TEXT'
-    ```
-  - LLMが生成したmermaidのjsonが破損しやすい
-  -
-    ```json
-    {{
-    "mermaid_definition": "graph TD;\n\n    classDef topic fill:#EFF6FF,stroke:#EFF6FF,color:#1E40AF;\n    classDef task fill:#FFFBEB,stroke:#FFFBEB,color:#D97706;\n\n    subgraph \"プロジェクト概要\";\n        TopicA[\"主要トピックA\"];\n        Task1(\"タスク1: 詳細\"); \n    end;\n\n    TopicA -- \"関連あり\" --> Task1;\n\n    %% Class Assignments\n    class TopicA topic;\n    class Task1 task;",
-    "title": "図のタイトル",
-    "description": "図の説明（オプション）"
-    }}
-    ```
-  - 上記例をLLMに指定しているが、エスケープなどをLLMにさせると失敗しやすい
-  - LLMには素のmermaidのみを出力させ、realtime database保存時にJSON.stringfyするようにする
-    - ガチガチに出力形式を縛るプロンプトが必要
-    - 決して余計なコメントをせず、mermaidコードのみを出力せよ、など
-    - この強制は英語の方が効果が高いならそうする
-  - フロントエンドでfirebase realtimedbからの変更を反映する際に、デコードして表示するようにする
-    - デコード時にクリーニングも有効にする
- - 主に`meeting-mate-app/server/agents/overview_diagram_agent.py` `meeting-mate-app/src/app/room/components/OverviewDiagramPanel.tsx`などが関係する
-
----
-
-## 📄 ライセンス
-
-このプロジェクトはMITライセンスの下で公開されています。詳細は[LICENSE](LICENSE)ファイルを参照してください。
-
-## 🤝 コントリビューション
-
-プロジェクトへの貢献を歓迎します！以下の手順でコントリビューションしてください：
-
-1. このリポジトリをフォーク
-2. 新しいブランチを作成 (`git checkout -b feature/amazing-feature`)
-3. 変更をコミット (`git commit -m 'Add some amazing feature'`)
-4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
-5. プルリクエストを作成
+## 補記
+- このDevcontainer環境は下記をベースに作成しました。感謝申し上げます。
+  - https://github.com/a5chin/terraform-template.git
+- このプロジェクトは[第2回 AI Agent Hackathon with Google Cloud](https://zenn.dev/hackathons/google-cloud-japan-ai-hackathon-vol2?tab=overview) への提出物として作成しました。
